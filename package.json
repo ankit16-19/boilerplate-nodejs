@@ -4,8 +4,15 @@
   "description": "Boilder plate to be used for NODEJS based projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "standard",
+    "test": "export NODE_ENV=test|| set NODE_ENV=test && mocha --compilers js:babel-core/register --no-deprecation",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build && node dist/index.js --no-deprecation"
   },
+  "keywords": [
+    "boilerplate",
+    "backend"
+  ],
   "author": "Ankit choudhary",
-  "license": "ISC"
+  "license": "MIT"
 }
